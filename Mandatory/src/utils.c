@@ -29,7 +29,7 @@ int	check_pid(char *str)
 	return (ft_atoi(str));
 }
 
-void	init_msg(t_tab *msg_buf)
+void	init_tab(t_tab *msg_buf)
 {
 	msg_buf->buffer = malloc(INITIAL_BUFFER_SIZE);
 	if (!msg_buf->buffer)
@@ -46,7 +46,6 @@ void	expand_tab(t_tab *msg_buf)
 	new_buffer = malloc(msg_buf->size * BUFFER_MULTIPLIER);
 	if (!new_buffer)
 	{
-		ft_printf("Memory allocation failed\n");
 		free_tab(msg_buf);
 		exit(EXIT_FAILURE);
 	}

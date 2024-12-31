@@ -29,7 +29,7 @@ static void	ft_handler(int sig, siginfo_t *info, void *context)
 	if (info->si_pid)
 		client = info->si_pid;
 	if (sig == SIGUSR1)
-		c |= (0b10000000 >> bit);
+		c |= (0x80 >> bit);
 	else if (sig == SIGUSR2)
 		c &= ~(0x80 >> bit);
 	bit++;
@@ -50,7 +50,7 @@ int	main(int ac, char **av)
 		ft_printf("Invalid Server Input\n");
 		return (EXIT_FAILURE);
 	}
-	init_msg(&g_msg_buffer);
+	init_tab(&g_msg_buffer);
 	ft_printf("Server PID: %d\n", getpid());
 	ft_signal(SIGUSR1, ft_handler, true);
 	ft_signal(SIGUSR2, ft_handler, true);

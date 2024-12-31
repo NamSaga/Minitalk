@@ -12,7 +12,7 @@
 
 #include "../minitalk.h"
 
-volatile sig_atomic_t	g_server = 0;
+static sig_atomic_t	g_server = 0;
 
 static void	ft_msgcheck(int sig)
 {
@@ -38,7 +38,7 @@ static void	send_char(char c, pid_t server)
 		else
 			ft_kill(server, SIGUSR2);
 		bit++;
-		while (0 == g_server)
+		while (g_server == 0)
 			usleep(42);
 		g_server = 0;
 	}
